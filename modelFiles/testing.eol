@@ -1,0 +1,8 @@
+Testing().println();
+
+operation Testing():Any{
+	//TO-DO
+	var pregunta = Navegacion.allInstances.hacia.select(e | e.isKindOf(Pregunta)).first();
+	return Navegacion.allInstances.select(n | n.hacia = pregunta);
+}
+

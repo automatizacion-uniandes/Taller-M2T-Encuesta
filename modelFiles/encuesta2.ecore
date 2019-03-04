@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="encuesta2" nsURI="http://www.example.org/encuesta2" nsPrefix="encuesta2">
+  <eClassifiers xsi:type="ecore:EClass" name="Encuesta">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="modulos" lowerBound="1"
+        upperBound="-1" eType="#//Modulo" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="navegacion" lowerBound="1"
+        upperBound="-1" eType="#//Navegacion" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Modulo" eSuperTypes="#//Elemento">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="preguntas" lowerBound="1"
+        upperBound="-1" eType="#//Pregunta" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="nombre" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nodos" lowerBound="1" upperBound="-1"
+        eType="#//Nodo" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pregunta" abstract="true" eSuperTypes="#//Elemento">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="opciones" upperBound="-1"
+        eType="#//OpcionRespuesta" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enunciado" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="prefijo" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Unica" eSuperTypes="#//Pregunta"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiple" eSuperTypes="#//Pregunta"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Abierta" eSuperTypes="#//Pregunta"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Elemento" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Navegacion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="desde" lowerBound="1" eType="#//Elemento"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="hacia" lowerBound="1" eType="#//Elemento"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OpcionRespuesta" eSuperTypes="#//Elemento">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="valor" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Nodo" abstract="true" eSuperTypes="#//Elemento">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="texto" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NodoInicio" eSuperTypes="#//Nodo"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodoFin" eSuperTypes="#//Nodo"/>
+</ecore:EPackage>

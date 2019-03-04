@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<encuesta2:Encuesta xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:encuesta2="http://www.example.org/encuesta2">
+  <modulos nombre="Modulo de Datos Personales">
+    <preguntas xsi:type="encuesta2:Abierta" enunciado="¿Cual es su nombre?" prefijo="A"/>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="¿Cual es su edad?" prefijo="UR">
+      <opciones valor="18 años o mas"/>
+      <opciones valor="Menos de 18"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Cual es su estado civil?">
+      <opciones valor="Casado"/>
+      <opciones valor="Soltero"/>
+      <opciones valor="Union Libre"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Cual es su grado de escolaridad?">
+      <opciones valor="Bachiller"/>
+      <opciones valor="Tecnico"/>
+      <opciones valor="Tecnologo"/>
+      <opciones valor="Universitario"/>
+      <opciones valor="Postgrado"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Hace cuanto vive con su pareja?">
+      <opciones valor="Menos de dos años"/>
+      <opciones valor="2 años o mas"/>
+    </preguntas>
+    <nodos xsi:type="encuesta2:NodoInicio" texto="Inicio Modulo datos personales"/>
+    <nodos xsi:type="encuesta2:NodoFin" texto="Fin"/>
+  </modulos>
+  <modulos nombre="Modulo de Ingresos">
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Cuales son sus ingresos mensuales?">
+      <opciones valor="Menos de un salario minimo"/>
+      <opciones valor="Un salario minimo"/>
+      <opciones valor="Mas de un salario minimo"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Cuantos trabajos tiene?">
+      <opciones valor="1"/>
+      <opciones valor="2"/>
+      <opciones valor="Mas de dos"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Usted es trabajador independiente?">
+      <opciones valor="si"/>
+      <opciones valor="no"/>
+      <opciones valor="si."/>
+      <opciones valor="no."/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Multiple" enunciado="Su/s contrato/s es/son">
+      <opciones valor="A termino fijo"/>
+      <opciones valor="Prestacion de servicios"/>
+      <opciones valor="A termino indefinido"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Cotiza salud y pension?">
+      <opciones valor="si"/>
+      <opciones valor="no"/>
+    </preguntas>
+    <nodos xsi:type="encuesta2:NodoInicio" texto="inicio mod Ingresos"/>
+    <nodos xsi:type="encuesta2:NodoFin" texto="Fin."/>
+  </modulos>
+  <modulos nombre="Modulo Universitario">
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Cuantos años estudio en la universidad?">
+      <opciones valor="4 años"/>
+      <opciones valor="mas de 4 años y menos de 8"/>
+      <opciones valor="8 años o mas"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Multiple" enunciado="Estudio en una universidad?">
+      <opciones valor="Publica"/>
+      <opciones valor="Privada"/>
+      <opciones valor="Privada y publica"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Usted termino todos sus estudios?">
+      <opciones valor="si"/>
+      <opciones valor="no"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Unica" enunciado="Usted Pago?">
+      <opciones valor="Menos de un millon"/>
+      <opciones valor="Mas de un millon y menos de 4 millones"/>
+      <opciones valor="Mas de 4 millones"/>
+    </preguntas>
+    <preguntas xsi:type="encuesta2:Abierta" enunciado="Cual es el nombre de su universidad?"/>
+    <nodos xsi:type="encuesta2:NodoInicio" texto="Inicio Mod universitario"/>
+  </modulos>
+  <navegacion desde="//@modulos.0/@preguntas.1/@opciones.0" hacia="//@modulos.0/@preguntas.2"/>
+  <navegacion desde="//@modulos.0/@preguntas.0" hacia="//@modulos.0/@preguntas.1"/>
+  <navegacion desde="//@modulos.0/@nodos.0" hacia="//@modulos.0/@preguntas.0"/>
+  <navegacion desde="//@modulos.0/@preguntas.3/@opciones.0" hacia="//@modulos.0/@nodos.1"/>
+  <navegacion desde="//@modulos.0/@preguntas.1/@opciones.1" hacia="//@modulos.0/@preguntas.3"/>
+  <navegacion desde="//@modulos.0/@preguntas.2/@opciones.0" hacia="//@modulos.0/@preguntas.4"/>
+  <navegacion desde="//@modulos.0/@preguntas.2/@opciones.2" hacia="//@modulos.0/@preguntas.4"/>
+  <navegacion desde="//@modulos.0/@preguntas.2/@opciones.1" hacia="//@modulos.0/@preguntas.3"/>
+  <navegacion desde="//@modulos.0/@preguntas.4" hacia="//@modulos.0/@preguntas.3"/>
+  <navegacion desde="//@modulos.0/@preguntas.3/@opciones.1" hacia="//@modulos.1"/>
+  <navegacion desde="//@modulos.0/@preguntas.3/@opciones.2" hacia="//@modulos.1"/>
+  <navegacion desde="//@modulos.0/@preguntas.3/@opciones.3" hacia="//@modulos.2"/>
+  <navegacion desde="//@modulos.0/@preguntas.3/@opciones.4" hacia="//@modulos.2"/>
+  <navegacion desde="//@modulos.2/@preguntas.0" hacia="//@modulos.2/@preguntas.1"/>
+  <navegacion desde="//@modulos.2/@preguntas.1/@opciones.0" hacia="//@modulos.2/@preguntas.2"/>
+  <navegacion/>
+  <navegacion desde="//@modulos.2/@preguntas.1/@opciones.2" hacia="//@modulos.2/@preguntas.2"/>
+  <navegacion desde="//@modulos.2/@preguntas.1/@opciones.1" hacia="//@modulos.2/@preguntas.3"/>
+  <navegacion desde="//@modulos.2/@preguntas.2" hacia="//@modulos.2/@preguntas.4"/>
+  <navegacion desde="//@modulos.2/@preguntas.3" hacia="//@modulos.2/@preguntas.2"/>
+  <navegacion desde="//@modulos.2/@preguntas.4" hacia="//@modulos.1"/>
+  <navegacion desde="//@modulos.1/@preguntas.0/@opciones.0" hacia="//@modulos.1/@preguntas.2"/>
+  <navegacion desde="//@modulos.1/@preguntas.0/@opciones.1" hacia="//@modulos.1/@preguntas.2"/>
+  <navegacion desde="//@modulos.1/@preguntas.0/@opciones.2" hacia="//@modulos.1/@preguntas.1"/>
+  <navegacion desde="//@modulos.1/@preguntas.3/@opciones.0" hacia="//@modulos.1/@nodos.1"/>
+  <navegacion desde="//@modulos.1/@preguntas.3/@opciones.1" hacia="//@modulos.1/@preguntas.4"/>
+  <navegacion desde="//@modulos.1/@preguntas.3/@opciones.2" hacia="//@modulos.1/@nodos.1"/>
+  <navegacion desde="//@modulos.1/@preguntas.4" hacia="//@modulos.1/@nodos.1"/>
+  <navegacion desde="//@modulos.1/@preguntas.1/@opciones.0" hacia="//@modulos.1/@preguntas.3"/>
+  <navegacion desde="//@modulos.1/@preguntas.1/@opciones.1" hacia="//@modulos.1/@preguntas.3"/>
+  <navegacion desde="//@modulos.1/@preguntas.1/@opciones.2" hacia="//@modulos.1/@preguntas.3"/>
+  <navegacion desde="//@modulos.1/@nodos.0" hacia="//@modulos.1/@preguntas.0"/>
+  <navegacion desde="//@modulos.2/@nodos.0" hacia="//@modulos.2/@preguntas.0"/>
+  <navegacion desde="//@modulos.1/@preguntas.2/@opciones.2" hacia="//@modulos.1/@preguntas.4"/>
+  <navegacion desde="//@modulos.1/@preguntas.2/@opciones.3" hacia="//@modulos.1/@preguntas.3"/>
+</encuesta2:Encuesta>

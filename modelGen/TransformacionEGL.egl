@@ -1,0 +1,50 @@
+[%	
+var root : mp!Encuesta:= mp!Encuesta.all.at(0);
+%]
+
+//Agregar preguntas
+[%
+	var idPregunta = 0;
+	var idModulo = 0;
+	var esNodoInicio = 0;
+	var tipoPregunta = 0;
+	for(modulos in mp!Modulo){
+		for (preguntas in modulos.preguntas)
+		{
+			
+			var nodoInicio = modulos.nodos.flatten().select(n | n.isTypeOf(NodoInicio)).first();
+			
+			if(root.navegacion.select(n | n.desde = nodoInicio).forAll(n | n.hacia = preguntas)){
+				esNodoInicio = 1;
+			}
+			
+			if(preguntas.isTypeOf(Abierta)){
+				tipoPregunta=0;
+			}
+			if(preguntas.isTypeOf(Multiple)){
+				tipoPregunta=1;
+			}
+			if(preguntas.isTypeOf(Unica)){
+				tipoPregunta=2;
+			}
+			
+			%]
+			
+			ENCUESTA.insertPregunta{
+			idpregunta: [%=idPregunta%],
+			pregunta: [%=preguntas.enunciado%],
+			modulo: [%=idModulo%],
+			espreguntainicial: [%=esNodoInicio%],
+			tipo: [%=tipoPregunta%],
+			}
+			[%
+			idPregunta++;
+			esNodoInicio = 0;
+		}
+		idModulo++;
+		
+	}
+		
+%]
+
+
