@@ -1,14 +1,38 @@
 [%	
-var root : mp!Encuesta:= mp!Encuesta.all.at(0);
+
+var listaModulos = root.modulos.flatten();
+var listaPreguntas = listaModulos.preguntas.flatten();
+var listaRespuestas = listaPreguntas.opciones.flatten();
+
+%]
+//Agregar modulos
+
+[%
+var esInicial = 1;
+for(modulo in listaModulos){
+	%]
+ENCUESTA.insertModulo(
+	{
+	idmodulo: [%=listaModulos.indexOf(modulo)%]
+	nombre: [%=modulo.nombre%]
+	esinicial: [%=esInicial %]
+	}	
+);
+	[%
+	if(listaModulos.indexOf(modulo) == 0){
+		esInicial = 0;
+	}
+}
 %]
 
 //Agregar preguntas
 [%
-	var idPregunta = 0;
-	var idModulo = 0;
 	var esNodoInicio = 0;
 	var tipoPregunta = 0;
-	for(modulos in mp!Modulo){
+	var siguienteModuloId = 0;
+	var siguienteRespuestaId = 0;
+	var siguientePreguntaId = 0;
+	for(modulos in listaModulos){
 		for (preguntas in modulos.preguntas)
 		{
 			
@@ -20,31 +44,54 @@ var root : mp!Encuesta:= mp!Encuesta.all.at(0);
 			
 			if(preguntas.isTypeOf(Abierta)){
 				tipoPregunta=0;
+				var siguientePregunta = root.navegacion.select(n | n.desde = preguntas).hacia.first();
+				siguientePreguntaId = listaPreguntas.indexOf(siguientePregunta);
+				siguienteModuloId = -1;
 			}
 			if(preguntas.isTypeOf(Multiple)){
 				tipoPregunta=1;
+				siguientePreguntaId=-1;
+				siguienteModuloId=-1;
 			}
 			if(preguntas.isTypeOf(Unica)){
 				tipoPregunta=2;
+				siguientePreguntaId=-1;
+				siguienteModuloId=-1;
 			}
 			
 			%]
 			
-			ENCUESTA.insertPregunta{
-			idpregunta: [%=idPregunta%],
+			ENCUESTA.insertPregunta({
+			idpregunta: [%=listaPreguntas.indexOf(preguntas)%],
 			pregunta: [%=preguntas.enunciado%],
-			modulo: [%=idModulo%],
+			modulo: [%=listaModulos.indexOf(modulos)%],
 			espreguntainicial: [%=esNodoInicio%],
 			tipo: [%=tipoPregunta%],
-			}
+			siguientepregunta: [%=siguientePreguntaId%],
+			siguientemodulo: [%=siguienteModuloId%]
+			});
 			[%
-			idPregunta++;
 			esNodoInicio = 0;
+			for(opcion in preguntas.opciones){
+			var siguientePregunta = root.navegacion.select(n | n.desde = opcion).hacia.first();
+			siguientePreguntaId = listaPreguntas.indexOf(siguientePregunta);
+			%]
+			ENCUESTA.insertRespuesta(
+			{
+			idrespuesta: [%=listaRespuestas.indexOf(opcion)%],
+			respuesta: [%=opcion.valor%],
+			pregunta: [%=listaPreguntas.indexOf(preguntas)%],
+			siguientepregunta: [%=siguientePreguntaId%],
+			siguientemodulo:-1;
+			}
+			);
+			[%
+			}
 		}
-		idModulo++;
 		
 	}
 		
 %]
+
 
 
