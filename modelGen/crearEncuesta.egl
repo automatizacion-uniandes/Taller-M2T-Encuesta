@@ -1,0 +1,15 @@
+[% 
+	var root : mp!Encuesta:= mp!Encuesta.all.at(0);
+		
+	var t:Template:= TemplateFactory.load('transformacionMigrate.egl');
+	t.populate('root', root);
+	t.generate('migrate.js');
+	
+	var t2:Template:= TemplateFactory.load('TransformacionEncuesta.egl');
+	t2.populate('root', root);
+	t2.generate('encuesta.js');
+	
+	var t3:Template:= TemplateFactory.load('crearHome.egl');
+	t3.populate('root', root);
+	t3.generate('home.component.html');
+%]

@@ -1,0 +1,39 @@
+[%	
+
+var listaModulos = root.modulos.flatten();
+var listaPreguntas = listaModulos.preguntas.flatten();
+var listaRespuestas = listaPreguntas.opciones.flatten();
+
+%]
+//elimina y crea la tabla encuesta respuestas
+ENCUESTA.encuesta_respuestasTable = function()
+{
+db.run("DROP TABLE IF EXISTS encuesta_respuestas");
+db.run("CREATE TABLE IF NOT EXISTS encuesta_respuestas (idencuesta_respuestas INTEGER PRIMARY KEY AUTOINCREMENT,
+[%
+for (pregunta in listaPreguntas){
+	if(pregunta.isTypeOf(Abierta)){
+	%]
+	pregunta[%=listaPreguntas.indexOf(pregunta)%] TEXT,
+	[%	
+	}
+	
+	if(pregunta.isTypeOf(Unica)){
+	%]
+	pregunta[%=listaPreguntas.indexOf(pregunta)%] INTEGER,
+	[%	
+	}
+	
+	if(pregunta.isTypeOf(Multiple)){
+		for(opcion in pregunta.opciones){
+		%]
+		pregunta[%=listaPreguntas.indexOf(pregunta)%]_[%=listaRespuestas.indexOf(opcion)%] INTEGER,
+		[%	
+		}
+	}
+}
+%]
+)");
+console.log("La tabla encuesta_respuestas ha sido correctamente creada");
+}
+

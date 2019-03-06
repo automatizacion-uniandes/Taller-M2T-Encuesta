@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<encuesta2:Encuesta xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:encuesta2="http://www.example.org/encuesta2">
+<encuesta2:Encuesta xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:encuesta2="http://www.example.org/encuesta2" xsi:schemaLocation="http://www.example.org/encuesta2 encuesta2.ecore" nombre="Situación académica y laboral Taller Grupo">
   <modulos nombre="Modulo de Datos Personales">
     <preguntas xsi:type="encuesta2:Abierta" enunciado="¿Cual es su nombre?" prefijo="A"/>
     <preguntas xsi:type="encuesta2:Unica" enunciado="¿Cual es su edad?" prefijo="UR">
@@ -37,8 +37,6 @@
       <opciones valor="Mas de dos"/>
     </preguntas>
     <preguntas xsi:type="encuesta2:Unica" enunciado="Usted es trabajador independiente?">
-      <opciones valor="si"/>
-      <opciones valor="no"/>
       <opciones valor="si."/>
       <opciones valor="no."/>
     </preguntas>
@@ -110,6 +108,6 @@
   <navegacion desde="//@modulos.1/@preguntas.1/@opciones.2" hacia="//@modulos.1/@preguntas.3"/>
   <navegacion desde="//@modulos.1/@nodos.0" hacia="//@modulos.1/@preguntas.0"/>
   <navegacion desde="//@modulos.2/@nodos.0" hacia="//@modulos.2/@preguntas.0"/>
-  <navegacion desde="//@modulos.1/@preguntas.2/@opciones.2" hacia="//@modulos.1/@preguntas.4"/>
-  <navegacion desde="//@modulos.1/@preguntas.2/@opciones.3" hacia="//@modulos.1/@preguntas.3"/>
+  <navegacion desde="//@modulos.1/@preguntas.2/@opciones.0" hacia="//@modulos.1/@preguntas.4"/>
+  <navegacion desde="//@modulos.1/@preguntas.2/@opciones.1" hacia="//@modulos.1/@preguntas.3"/>
 </encuesta2:Encuesta>
