@@ -44,19 +44,36 @@ ENCUESTA.insertModulo(
 			
 			if(preguntas.isTypeOf(Abierta)){
 				tipoPregunta=0;
-				var siguientePregunta = root.navegacion.select(n | n.desde = preguntas).hacia.first();
-				siguientePreguntaId = listaPreguntas.indexOf(siguientePregunta);
-				siguienteModuloId = -1;
+				var navega = root.navegacion.select(n | n.desde = preguntas).first();
+				
+				
+				if(navega.hacia.isKindOf(Pregunta)){
+					var siguientePregunta = navega.hacia;
+					siguientePreguntaId = listaPreguntas.indexOf(siguientePregunta);
+					siguienteModuloId = -1;
+				}
+				if(navega.hacia.isTypeOf(Modulo)){
+					siguientePreguntaId = -1;
+					var siguienteModulo = navega.hacia;
+					siguienteModuloId = listaModulos.indexOf(siguienteModulo);
+				}
+				if(navega.hacia.isTypeOf(NodoFin)){
+					siguientePreguntaId = -1;
+					siguienteModuloId = -1;
+				}
+				
+				
 			}
 			if(preguntas.isTypeOf(Multiple)){
 				tipoPregunta=1;
-				siguientePreguntaId=-1;
-				siguienteModuloId=-1;
+				siguientePreguntaId = -1;
+				siguienteModuloId = -1;
+				
 			}
 			if(preguntas.isTypeOf(Unica)){
 				tipoPregunta=2;
-				siguientePreguntaId=-1;
-				siguienteModuloId=-1;
+				siguientePreguntaId = -1;
+				siguienteModuloId = -1;	
 			}
 			
 			%]
@@ -73,8 +90,28 @@ ENCUESTA.insertModulo(
 			[%
 			esNodoInicio = 0;
 			for(opcion in preguntas.opciones){
-			var siguientePregunta = root.navegacion.select(n | n.desde = opcion).hacia.first();
-			siguientePreguntaId = listaPreguntas.indexOf(siguientePregunta);
+			
+			if(preguntas.isTypeOf(Multiple) or preguntas.isTypeOf(Unica)){
+				var navega2 = root.navegacion.select(n | n.desde = opcion).hacia.first();
+					
+				if(navega2.isKindOf(Pregunta)){
+					var siguientePregunta = navega2;
+					siguientePreguntaId = listaPreguntas.indexOf(siguientePregunta);
+					siguienteModuloId = -1;
+				}
+				if(navega2.isTypeOf(Modulo)){
+					siguientePreguntaId = -1;
+					var siguienteModulo = navega2;
+					siguienteModuloId = listaModulos.indexOf(siguienteModulo);
+				}
+				if(navega2.isTypeOf(NodoFin)){
+					siguientePreguntaId = -1;
+					siguienteModuloId = -1;
+				}
+				
+			}
+					
+			
 			%]
 			ENCUESTA.insertRespuesta(
 			{
@@ -82,7 +119,7 @@ ENCUESTA.insertModulo(
 			respuesta: [%=opcion.valor%],
 			pregunta: [%=listaPreguntas.indexOf(preguntas)%],
 			siguientepregunta: [%=siguientePreguntaId%],
-			siguientemodulo:-1;
+			siguientemodulo:[%=siguienteModuloId%];
 			}
 			);
 			[%

@@ -123,7 +123,7 @@ ENCUESTA.insertModulo(
 			respuesta: Tecnico,
 			pregunta: 3,
 			siguientepregunta: -1,
-			siguientemodulo:-1;
+			siguientemodulo:1;
 			}
 			);
 			ENCUESTA.insertRespuesta(
@@ -132,7 +132,7 @@ ENCUESTA.insertModulo(
 			respuesta: Tecnologo,
 			pregunta: 3,
 			siguientepregunta: -1,
-			siguientemodulo:-1;
+			siguientemodulo:1;
 			}
 			);
 			ENCUESTA.insertRespuesta(
@@ -141,7 +141,7 @@ ENCUESTA.insertModulo(
 			respuesta: Universitario,
 			pregunta: 3,
 			siguientepregunta: -1,
-			siguientemodulo:-1;
+			siguientemodulo:2;
 			}
 			);
 			ENCUESTA.insertRespuesta(
@@ -150,7 +150,7 @@ ENCUESTA.insertModulo(
 			respuesta: Postgrado,
 			pregunta: 3,
 			siguientepregunta: -1,
-			siguientemodulo:-1;
+			siguientemodulo:2;
 			}
 			);
 			
@@ -495,7 +495,7 @@ ENCUESTA.insertModulo(
 			espreguntainicial: 0,
 			tipo: 0,
 			siguientepregunta: -1,
-			siguientemodulo: -1
+			siguientemodulo: 1
 			});
 
 
