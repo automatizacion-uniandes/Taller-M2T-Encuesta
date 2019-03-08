@@ -5,8 +5,17 @@ var listaPreguntas = listaModulos.preguntas.flatten();
 var listaRespuestas = listaPreguntas.opciones.flatten();
 
 %]
-//Agregar modulos
 
+//obtenemos toda la funcionalidad del modelo shop
+var ENCUESTA = require('./encuesta');
+
+ENCUESTA.modulosTable();
+ENCUESTA.preguntasTable();
+ENCUESTA.respuestasTable();
+ENCUESTA.encuesta_respuestasTable();
+
+
+//Agregar modulos
 [%
 var esInicial = 1;
 for(modulo in listaModulos){
@@ -14,7 +23,7 @@ for(modulo in listaModulos){
 ENCUESTA.insertModulo(
 	{
 	idmodulo: [%=listaModulos.indexOf(modulo)%]
-	nombre: [%=modulo.nombre%]
+	nombre: "[%=modulo.nombre%]"
 	esinicial: [%=esInicial %]
 	}	
 );
@@ -76,17 +85,18 @@ ENCUESTA.insertModulo(
 				siguienteModuloId = -1;	
 			}
 			
-			%]
-			
-			ENCUESTA.insertPregunta({
-			idpregunta: [%=listaPreguntas.indexOf(preguntas)%],
-			pregunta: [%=preguntas.enunciado%],
-			modulo: [%=listaModulos.indexOf(modulos)%],
-			espreguntainicial: [%=esNodoInicio%],
-			tipo: [%=tipoPregunta%],
-			siguientepregunta: [%=siguientePreguntaId%],
-			siguientemodulo: [%=siguienteModuloId%]
-			});
+			%]			
+ENCUESTA.insertPregunta(
+	{
+		idpregunta: [%=listaPreguntas.indexOf(preguntas)%],
+		pregunta: "[%=preguntas.enunciado%]",
+		modulo: [%=listaModulos.indexOf(modulos)%],
+		espreguntainicial: [%=esNodoInicio%],
+		tipo: [%=tipoPregunta%],
+		siguientepregunta: [%=siguientePreguntaId%],
+		siguientemodulo: [%=siguienteModuloId%]
+	}
+);
 			[%
 			esNodoInicio = 0;
 			for(opcion in preguntas.opciones){
@@ -113,22 +123,18 @@ ENCUESTA.insertModulo(
 					
 			
 			%]
-			ENCUESTA.insertRespuesta(
-			{
-			idrespuesta: [%=listaRespuestas.indexOf(opcion)%],
-			respuesta: [%=opcion.valor%],
-			pregunta: [%=listaPreguntas.indexOf(preguntas)%],
-			siguientepregunta: [%=siguientePreguntaId%],
-			siguientemodulo:[%=siguienteModuloId%];
-			}
-			);
+ENCUESTA.insertRespuesta(
+	{
+		idrespuesta: [%=listaRespuestas.indexOf(opcion)%],
+		respuesta: "[%=opcion.valor%]",
+		pregunta: [%=listaPreguntas.indexOf(preguntas)%],
+		siguientepregunta: [%=siguientePreguntaId%],
+		siguientemodulo:[%=siguienteModuloId%],
+	}
+);
 			[%
 			}
 		}
 		
-	}
-		
+	}		
 %]
-
-
-

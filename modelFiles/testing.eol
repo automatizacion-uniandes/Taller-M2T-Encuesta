@@ -1,8 +1,29 @@
-Testing().println();
+//Testing();
+preguntasMultiples();
 
 operation Testing():Any{
-	//TO-DO
-	var pregunta = Navegacion.allInstances.hacia.select(e | e.isKindOf(Pregunta)).first();
-	return Navegacion.allInstances.select(n | n.hacia = pregunta);
+
+	
+	var multiples = Encuesta.allInstances.navegacion.flatten().select(n | n.hacia.isTypeOf(NodoFin));
+	multiples.size().println();
+	
+	
+	for (m in multiples) {
+		m.desde.println();	
+	}
+}
+
+
+operation preguntasMultiples():Any {
+
+	var listaModulos = Encuesta.allInstances.modulos.flatten();
+	var listaPreguntas = listaModulos.preguntas.flatten().select(p | not p.isTypeOf(Abierta)).opciones.flatten();
+
+	
+	listaPreguntas.println();
+	
+	
+	
+
 }
 
